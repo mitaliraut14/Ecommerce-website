@@ -18,6 +18,13 @@ def dashboard(request):
     content['data']=p
     return render(request,'dashboard.html',content)
 
+def admin_udash(request):
+    p=User.objects.all()
+    content={}
+    content['data']=p
+    return render(request,'admin_udash.html',content)
+
+
 def view_product(request,rid):
     p=Product.objects.filter(id=rid)
     content={}
@@ -40,6 +47,45 @@ def delete(request,rid):
     p=Product.objects.get(id=rid)#select * from blogapp_post where id=rid
     p.delete()
     return redirect('/udash')
+
+def edit(request,rid):
+    if request.method=='POST':
+        ushape=request.POST['shape']
+        usize=request.POST['size']
+        ulocation=request.POST['loc']
+        uprice=request.POST['price']
+        uimage=request.POST['img']
+        upname=request.POST['pname']
+
+        p=Product.objects.filter(id=rid)
+        p.update(shape=ushape, size=usize, location=ulocation, price=uprice, image=uimage, pname=upname)
+        #update bloapp_post set title=uptitle,sdet=usdetail,pdet=updetail,cat=upcat,status=upstatus where id=rid;
+        return redirect('/udash')
+
+
+    else:
+        p=Product.objects.filter(id=rid)
+        content={}
+        content['data']=p
+        return render(request,'editproduct.html',content)
+
+def add_user(request):
+    if request.method=="POST":
+        name=request.POST['name']
+        age=request.POST['age']
+        address=request.POST['add']
+        username=request.POST['uname']
+        password=request.POST['pass']
+        
+        p=User.objects.create(name=name, age=age, address=address, username=username, password=password)
+        p.save()
+    return render(request,'add_user.html')
+
+def remove(request,rid):
+    p=User.objects.get(id=rid)#select * from blogapp_post where id=rid
+    p.delete()
+    return redirect('/udash')
+
 
 def register(request):
     if request.method=="POST":
@@ -93,21 +139,23 @@ def register(request):
 
 def user_login(request):
     if request.method=="POST":
-        userid=request.user.id
+        # userid=request.user.id
         email=request.POST['email']
         upass=request.POST['upass']
         usuccess={}
-        user =User.objects.values().filter(username=email)
+        user =User.objects.get(username=email)
         
         # for user in userList:
-        uname=user[0]['username']
-        uupass=user[0]['password']
-        print(user[0]['username'])
-        print(user[0]['password'])
+        uname=user.username
+        uupass=user.password
+        print(uname)
+        print(uupass)
         # request.session['user_id'] = email
         if user is not None:
             # login(request,u)
             if uname==email and uupass==upass:
+                request.session['userid']=user.id
+                print(user.id)
 
                 return redirect('/')
             else:

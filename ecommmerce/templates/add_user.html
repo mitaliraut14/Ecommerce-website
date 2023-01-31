@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+
+<main id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 my-5 mx-auto">
+
+                <form method="POST" action="/add_user">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="tid" class="form-label">Name : </label>
+                        <input type="text" name="name" class="form-control" id="tid" placeholder="enter post title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sid" class="form-label">Age: </label>
+                        <input type="integer" name="age" class="form-control" id="sid" placeholder="enter shape">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sid" class="form-label">Address : </label>
+                        <input type="text" name="add" class="form-control" id="sid" placeholder="enter size">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sid" class="form-label">Username : </label>
+                        <input type="email" name="uname" class="form-control" id="sid" placeholder="enter location">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sid" class="form-label">Password : </label>
+                        <input type="text" name="pass" class="form-control" id="sid" placeholder="enter price">
+                    </div>
+
+                    <div class="mb-3">
+                        <button class="btn btn-danger" type="submit">ADD</button>
+                    </div>
+            
+            
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock 'main' %}
