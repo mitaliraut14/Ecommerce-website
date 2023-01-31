@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+<main id="main">
+
+    <div class="container">
+        <div class="row">
+        
+            <div class="col-md-2 my-5">
+                <a href="/add_product"><button class="btn btn-success">Add Product</button></a>  <!-- End of button-->
+            </div>
+
+            <div class="col-md-10 my-5">
+                <table class="table ">
+                    <tr>
+                        <th>Sr.no</th>
+                        <th>Product Name</th>
+                        <th>Shape</th>
+                        <th>Size</th>
+                        <th>Location</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                        <th>View</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                {% for x in data %}
+                    <tr>
+                        <td>{{x.id}}</td>
+                        <td>{{x.pname}}</td>
+                        <td>{{x.shape}}</td>
+                        <td>{{x.size}}</td>
+                        <td>{{x.location}}</td>
+                        <td>{{x.price}}</td>
+                        <td>{{x.image}}</td>
+            
+                        <td><a href="/view"><button class="btn btn-primary">view</button></a></td>
+                        <td><a href="/edit"><button class="btn btn-warning">Edit</button></a></td>
+                        <td><a href="/delete"><button class="btn btn-danger">Delete</button></a></td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div> <!-- End of table-->
+                
+           
+
+        </div><!-- End of row-->
+    </div><!-- End of container-->
+</main>
+{% endblock 'main' %}
+

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'main' %}
+ <main id="main">
+    <div class="container">
+        <div class="row">
+        
+            {% for x in data %}
+            <div class="class col-md-9 my-3 mx-auto">
+                <div class="card" style="width: 100%;">
+                    <!-- <img src="{% static 'assets/img/noblogimage.png' %}" class="card-img-top" height=400px alt="..."> -->
+                    <div class="card-body">
+                      <img src="{{x.image}}" class="card-img-top" height=500 alt="...">
+                      <h4 class="card-title">{{x.pname}}</h4>
+                      <h5 class="card-title">Shape: {{x.shape}}</h5>
+                      <p class="card-text">Size : {{x.size}}</p>
+                      <p class="card-text">Location : {{x.location}}</p>
+                      <p class="card-text">Price: ₹{{x.price}}</p>
+                      <a href="/" class="btn btn-danger">Back</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+ </main>
+ {% endblock 'main' %}

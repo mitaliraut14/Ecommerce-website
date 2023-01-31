@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'main' %}
+
+<section class="section-name padding-y-sm">
+	<div class="container">
+
+		<header class="section-heading">
+			<!-- <a href="/store" class="btn btn-outline-primary float-right">See all</a> -->
+			<h3 class="section-title">Popular products</h3>
+		</header><!-- sect-heading -->
+
+	
+			<div class="row">
+				{% for x in data %}
+				<div class="col-md-3">
+					<div class="card card-product-grid">
+						<a href="/view_product/{{x.id}}" class="img-wrap"> <img src="{{x.image}}" height="250" > </a>
+						<figcaption class="info-wrap">
+                            <h5 class="card-title">{{x.pname}}</h5>
+							<a href="/view_product/{{x.id}}" class="title">{{x.shape}}</a>
+							<div class="price mt-1">₹{{x.price}}</div> <!-- price-wrap.// -->
+						</figcaption>
+					</div>
+				</div> <!-- col.// -->
+				{% endfor %}
+			</div> <!-- row.// -->
+
+	</div><!-- container // -->
+</section>
+
+{% endblock %}

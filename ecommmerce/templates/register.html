@@ -1,0 +1,109 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'main' %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+
+<!-- ============================ COMPONENT REGISTER   ================================= -->
+	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+      <article class="card-body ">
+		<center><header class="mb-4"><h4 class="card-title">Sign up</h4></header></center>
+		<center>
+        <form method="POST" action="/register">
+			{% csrf_token %}
+				<div class="form-row">
+					<div class="col-md-6 form-group">
+						<label>Name</label>
+					  	<input type="text" name="uname" class="form-control" placeholder="enter name">
+
+						{% if errnamemsg %}
+							<span class="text-danger">Name field cannot be Blank</span>
+						{% endif %}
+
+					</div> <!-- form-group end.// -->
+				</div> <!-- form-row end.// -->
+				<div class="form-row">
+					<div class="col-md-6 form-group">
+						<label>Username</label>
+						<input type="email" name="uemail" class="form-control" placeholder="enter your email id" >
+						
+						{% if erremailmsg %}
+							<span class="text-danger">Email field cannot be Blank</span>
+						{% endif %}
+						
+
+					</div> <!-- form-group end.// -->
+				</div> <!-- form-row end.// -->
+                <div class="form-row">
+					<div class="col-md-6 form-group">
+						<label>Age : </label>
+						<input type="integer" name="age" class="form-control" placeholder="enter your age" >
+						
+						{% if erragemsg %}
+							<span class="text-danger">Age field cannot be Blank</span>
+						{% endif %}
+						
+
+					</div> <!-- form-group end.// -->
+				</div> <!-- form-row end.// -->
+                <div class="form-row">
+					<div class="col-md-6 form-group">
+						<label>Address :</label>
+						<input type="text" name="add" class="form-control" placeholder="enter your address" >
+						
+						{% if erraddmsg %}
+							<span class="text-danger">Address field cannot be Blank</span>
+						{% endif %}
+						
+
+					</div> <!-- form-group end.// -->
+				</div> <!-- form-row end.// -->
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label>Create password</label>
+					    <input class="form-control" type="password" name="upass" placeholder="enter your password">
+						
+						{% if errpassmsg %}
+						<span class="text-danger">Password field cannot be Blank</span>
+						{% endif %}
+
+					</div> <!-- form-group end.// --> 
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label>Confirm password</label>
+					    <input class="form-control" type="password" name="cupass" placeholder="enter your password again">
+						
+						{% if errcupassmsg %}
+						<span class="text-danger">Confirm password field cannot be blank</span>
+						{% elif errmismatch %}
+						<span class="text-danger">Password and Confirm Password didn't matched</span>
+						{% endif %}
+						
+					</div> <!-- form-group end.// -->  
+				</div>
+			    <div class="form-group">
+			       <button class="btn btn-primary btn-block" type="submit"> Register </button>
+			    </div> <!-- form-group// -->  
+				
+				{% if msg %}
+					<span class="text-success">{{msg}}</span>
+				{% endif %}
+			        
+			</form>
+        </center>
+		</article><!-- card-body.// -->
+    </div> <!-- card .// -->
+    <p class="text-center mt-4">Have an account? <a href="/login">Log In</a></p>
+    <br><br>
+<!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock 'main' %}
